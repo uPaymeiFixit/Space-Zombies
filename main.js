@@ -82,17 +82,15 @@ function main() {
 		makeBullet();
 	};
 
-	//var theta = Math.atan2(( my - player.y ), ( mx - player.x ));
-	//player.vx = Math.cos( theta ) * 5;
-	//player.vy = Math.sin( theta ) * 5;
-	player.vx = vx || 0;
-	player.vy = vy || 0;
+	var theta = Math.atan2(( my - player.y ), ( mx - player.x ));
+	player.vx = Math.cos( theta ) * 5;
+	player.vy = Math.sin( theta ) * 5;
 	//console.log(Math.round(vy));
 
 	player.x += player.vx;
 	player.y += player.vy;
 
-	ctx.fillStyle = '0f0';
+	ctx.fillStyle = '#00FF00';
 	draw( player );
 
 	for ( var i = 0; i < bullet.length; i++ ) {
@@ -100,7 +98,7 @@ function main() {
 		bullet[ i ].x += bullet[ i ].vx;
 		bullet[ i ].y += bullet[ i ].vy;
 
-		ctx.fillStyle = 'f0f';
+		ctx.fillStyle = '#FF00FF';
 		draw( bullet[ i ] );
 
 		for (var j = 0; j < ai.length; j++) {
@@ -117,7 +115,7 @@ function main() {
 			bullet.splice( i, 1 );
 		};
 
-		ctx.fillStyle = '0ff'
+		ctx.fillStyle = '#00FFFF'
 		var sc = "Score " + score;
 		ctx.fillText(sc, 100, 100)
 
@@ -125,7 +123,7 @@ function main() {
 
 	
 
-	ctx.fillStyle = 'fff';
+	ctx.fillStyle = '#FFFFFF';
 	for ( var i = 0; i < ai.length; i++ ) {
 
 		var theta = Math.atan2(( player.y - ai[i].y ), ( player.x - ai[i].x ));
@@ -139,7 +137,7 @@ function main() {
 
 		if ( collision( ai[ i ], player ) ) {
 			clearInterval( timer );
-			ctx.fillStyle = 'f00'
+			ctx.fillStyle = '#FF0000'
 			ctx.font = "70pt Arial";
 			ctx.fillText('GAME OVER', 100, 300)
 			return null;
